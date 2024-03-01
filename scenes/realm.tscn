@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 50, 2, 50 )
+
+[sub_resource type="ConvexPolygonShape" id=2]
+points = PoolVector3Array( -25.2174, -1.21739, -25.2174, 25.2167, 1.3913, 25.2174, -25.2174, 1.3913, 25.2174, 25.2167, -1.21739, 25.2174, 25.2167, 1.3913, -25.2174, -25.2174, -1.21739, 25.2174, -25.2174, 1.3913, -25.2174, 25.2167, -1.21739, -25.2174 )
+
+[node name="realm" type="Node"]
+
+[node name="sun" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 10, 0 )
+
+[node name="turrain" type="StaticBody" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="turrain"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+mesh = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="turrain"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+shape = SubResource( 2 )
