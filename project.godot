@@ -17,6 +17,10 @@ run/low_processor_mode=true
 config/icon="res://icon.png"
 config/quit_on_go_back=false
 
+[autoload]
+
+fs="*res://autoload/fs.gd"
+
 [display]
 
 window/size/width=800
