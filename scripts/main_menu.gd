@@ -1,8 +1,12 @@
-extends VBoxContainer
+extends Node
+
+
+onready var settings_menu := preload("res://scenes/settings_menu.tscn")
 
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("ui_cancel"):
+		get_tree().set_input_as_handled()
 		on_exit()
 
 
@@ -11,7 +15,8 @@ func on_start():
 
 
 func on_settings():
-	pass
+	if !has_node("settings_menu"):
+		add_child(settings_menu.instance())
 
 
 func on_exit():

@@ -20,6 +20,7 @@ config/quit_on_go_back=false
 [autoload]
 
 fs="*res://autoload/fs.gd"
+Settings="*res://autoload/Settings.gd"
 
 [display]
 

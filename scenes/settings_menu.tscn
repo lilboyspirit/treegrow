@@ -1,0 +1,164 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/settings_menu.gd" type="Script" id=1]
+
+[node name="settings_menu" type="Node"]
+script = ExtResource( 1 )
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -250.0
+margin_right = 200.0
+margin_bottom = 250.0
+
+[node name="Controls" type="Tabs" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Controls/VBoxContainer"]
+margin_right = 376.0
+margin_bottom = 16.0
+
+[node name="Label" type="Label" parent="TabContainer/Controls/VBoxContainer/HBoxContainer"]
+margin_top = 1.0
+margin_right = 172.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+text = "Sensitivity"
+
+[node name="sensitivity" type="HSlider" parent="TabContainer/Controls/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 176.0
+margin_right = 376.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 200, 0 )
+min_value = 0.01
+max_value = 2.0
+step = 0.05
+value = 1.0
+tick_count = 7
+
+[node name="Graphics" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Graphics"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="power_saving" type="CheckButton" parent="TabContainer/Graphics/VBoxContainer"]
+unique_name_in_owner = true
+margin_right = 376.0
+margin_bottom = 40.0
+text = "Power Saving"
+
+[node name="fullscreen" type="CheckButton" parent="TabContainer/Graphics/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 44.0
+margin_right = 376.0
+margin_bottom = 84.0
+text = "Fullscreen"
+
+[node name="vsync" type="CheckButton" parent="TabContainer/Graphics/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 88.0
+margin_right = 376.0
+margin_bottom = 128.0
+text = "V-Sync"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="TabContainer/Graphics/VBoxContainer"]
+margin_top = 132.0
+margin_right = 376.0
+margin_bottom = 148.0
+
+[node name="Label" type="Label" parent="TabContainer/Graphics/VBoxContainer/HBoxContainer4"]
+margin_top = 1.0
+margin_right = 172.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+text = "Render Resolution"
+
+[node name="resolution" type="HSlider" parent="TabContainer/Graphics/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+margin_left = 176.0
+margin_right = 376.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 200, 0 )
+min_value = 0.01
+max_value = 2.0
+step = 0.05
+value = 1.0
+tick_count = 7
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="TabContainer/Graphics/VBoxContainer"]
+margin_top = 152.0
+margin_right = 376.0
+margin_bottom = 168.0
+
+[node name="Label" type="Label" parent="TabContainer/Graphics/VBoxContainer/HBoxContainer5"]
+margin_top = 1.0
+margin_right = 152.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+text = "FPS Limit"
+
+[node name="fps_count" type="Label" parent="TabContainer/Graphics/VBoxContainer/HBoxContainer5"]
+unique_name_in_owner = true
+margin_left = 156.0
+margin_top = 1.0
+margin_right = 172.0
+margin_bottom = 15.0
+text = "60"
+
+[node name="fps" type="HSlider" parent="TabContainer/Graphics/VBoxContainer/HBoxContainer5"]
+unique_name_in_owner = true
+margin_left = 176.0
+margin_right = 376.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 200, 0 )
+min_value = 30.0
+max_value = 255.0
+step = 15.0
+value = 60.0
+tick_count = 16
+
+[node name="back" type="Button" parent="."]
+margin_left = 200.0
+margin_top = 50.0
+margin_right = 212.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 64, 0 )
+text = "Back"
+
+[connection signal="value_changed" from="TabContainer/Controls/VBoxContainer/HBoxContainer/sensitivity" to="." method="on_sensitivity_changed"]
+[connection signal="toggled" from="TabContainer/Graphics/VBoxContainer/power_saving" to="." method="on_power_saving_toggled"]
+[connection signal="toggled" from="TabContainer/Graphics/VBoxContainer/fullscreen" to="." method="on_fullscreen_toggled"]
+[connection signal="toggled" from="TabContainer/Graphics/VBoxContainer/vsync" to="." method="on_vsync_toggled"]
+[connection signal="value_changed" from="TabContainer/Graphics/VBoxContainer/HBoxContainer4/resolution" to="." method="on_resolution_changed"]
+[connection signal="value_changed" from="TabContainer/Graphics/VBoxContainer/HBoxContainer5/fps" to="." method="on_fps_changed"]
+[connection signal="pressed" from="back" to="." method="on_exit"]
