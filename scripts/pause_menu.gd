@@ -11,6 +11,7 @@ func _input(event: InputEvent):
 
 
 func on_back():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	queue_free()
 
 
