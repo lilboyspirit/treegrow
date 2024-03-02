@@ -28,12 +28,12 @@ margin_right = 128.0
 margin_bottom = 44.0
 text = "Settings"
 
-[node name="exit" type="Button" parent="VBoxContainer"]
+[node name="quit" type="Button" parent="VBoxContainer"]
 margin_top = 48.0
 margin_right = 128.0
 margin_bottom = 68.0
-text = "Exit"
+text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/start" to="." method="on_start"]
 [connection signal="pressed" from="VBoxContainer/settings" to="." method="on_settings"]
-[connection signal="pressed" from="VBoxContainer/exit" to="." method="on_exit"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="on_exit"]
