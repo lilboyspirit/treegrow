@@ -11,6 +11,7 @@ func _input(event: InputEvent):
 
 
 func on_start():
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://scenes/realm.tscn")
 
 
