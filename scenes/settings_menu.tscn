@@ -148,10 +148,14 @@ value = 60.0
 tick_count = 16
 
 [node name="back" type="Button" parent="."]
-margin_left = 200.0
-margin_top = 50.0
-margin_right = 212.0
-margin_bottom = 70.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -250.0
+margin_right = -188.0
+margin_bottom = -230.0
 rect_min_size = Vector2( 64, 0 )
 text = "Back"
 
