@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends VBoxContainer
+
+
+var high_score = 0
+var score = 0
+
+
+func _ready():
+	var load_state = fs.load_json(\"user://score.json\", self)
+	if load_state is GDScriptFunctionState:
+		yield(load_state, \"completed\")
+	
+	$high_score.text = \"Your High Score: \" + str(high_score)
+	$score.text = \"Your Score This Round: \" + str(score)
+
+
+func _on_start_pressed():
+	get_tree().change_scene(\"res://scenes/realm.tscn\")
+
+
+func _on_quit_pressed():
+	get_tree().change_scene(\"res://scenes/main_menu.tscn\")
+"
+
+[node name="VBoxContainer" type="VBoxContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_top = -49.0
+margin_right = 64.0
+margin_bottom = 49.0
+script = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_right = 128.0
+margin_bottom = 14.0
+text = "You Lost 🫵"
+align = 1
+
+[node name="high_score" type="Label" parent="."]
+margin_top = 18.0
+margin_right = 128.0
+margin_bottom = 32.0
+text = "You Lost 🫵"
+align = 1
+
+[node name="score" type="Label" parent="."]
+margin_top = 36.0
+margin_right = 128.0
+margin_bottom = 50.0
+text = "You Lost 🫵"
+align = 1
+
+[node name="start" type="Button" parent="."]
+margin_top = 54.0
+margin_right = 128.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 128, 0 )
+text = "Start Over"
+
+[node name="quit" type="Button" parent="."]
+margin_top = 78.0
+margin_right = 128.0
+margin_bottom = 98.0
+rect_min_size = Vector2( 128, 0 )
+text = "Quit"
+
+[connection signal="pressed" from="start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]

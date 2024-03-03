@@ -6,6 +6,7 @@ onready var pause_menu = preload("res://scenes/pause_menu.tscn")
 onready var viewport = $"%viewport"
 onready var camera = $"%camera"
 onready var head = $"head"
+onready var ray : RayCast = $"%RayCast"
 
 export var camera_acceleration := 40.0
 export var rotation_factor := 0.005
@@ -27,8 +28,23 @@ var velocity := Vector3()
 var direction := Vector3()
 var acceleration := Vector3()
 
+var high_score = 0
+var score = 0
+
+
+func _exit_tree():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	var data := {
+		"high_score": score if score > high_score else high_score,
+		"score": score
+	}
+	fs.save_json("user://score.json", data)
+
 
 func _input(event: InputEvent):
+	if event is InputEventMouseButton:
+		if event.pressed && event.button_index == 1:
+			shot()
 	if event is InputEventKey:
 		if event.is_action_pressed("ui_cancel"):
 			get_tree().set_input_as_handled()
@@ -37,6 +53,16 @@ func _input(event: InputEvent):
 			sprinting = event.is_pressed()
 		if event.is_action("crouch"):
 			crouching = event.is_pressed()
+
+
+func shot():
+	if ray.is_colliding():
+		var collider = ray.get_collider()
+		if collider is KinematicBody:
+			if collider.is_in_group("enemies"):
+				collider.queue_free()
+				score += 1
+				$score.text = "Score: " + str(score)
 
 
 func on_back():
@@ -53,6 +79,13 @@ func _ready():
 	get_viewport().connect("size_changed", self, "_on_size_changed")
 	# warning-ignore:return_value_discarded
 	Settings.connect("updated", self, "_on_settings_updated")
+	
+	var data = fs.load_json("user://score.json")
+	
+	if data is GDScriptFunctionState:
+		yield(data, "completed")
+	
+	high_score = data["high_score"]
 
 
 func _physics_process(delta):
