@@ -27,6 +27,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 [node name="head" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 
+[node name="SpotLight" type="SpotLight" parent="head"]
+spot_range = 20.0
+
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2, 0 )
 shape = SubResource( 1 )
