@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/greyDark.material" type="Material" id=2]
 [ext_resource path="res://assets/dark.material" type="Material" id=3]
+[ext_resource path="res://assets/shot.mp3" type="AudioStream" id=4]
 
 [sub_resource type="ArrayMesh" id=2]
 surfaces/0 = {
@@ -93,15 +94,16 @@ render_target_update_mode = 3
 unique_name_in_owner = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 
-[node name="head" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+[node name="SpotLight" type="SpotLight" parent="ViewportContainer/viewport/camera"]
+spot_range = 20.0
 
-[node name="uziLong" type="MeshInstance" parent="head"]
+[node name="uziLong" type="MeshInstance" parent="ViewportContainer/viewport/camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.279667, -0.613314, -0.757495 )
 mesh = SubResource( 2 )
+skeleton = NodePath("../../../../head")
 
-[node name="SpotLight" type="SpotLight" parent="head"]
-spot_range = 20.0
+[node name="head" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 
 [node name="RayCast" type="RayCast" parent="head"]
 unique_name_in_owner = true
@@ -111,6 +113,9 @@ cast_to = Vector3( 0, 0, -100 )
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2, 0 )
 shape = SubResource( 1 )
+
+[node name="gunshot_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 
 [node name="score" type="Label" parent="."]
 anchor_left = 0.5
@@ -135,3 +140,8 @@ margin_top = -1.5
 margin_right = 1.5
 margin_bottom = 1.5
 mouse_filter = 2
+
+[node name="fps" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "FPS: "

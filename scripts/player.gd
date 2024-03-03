@@ -7,6 +7,7 @@ onready var viewport = $"%viewport"
 onready var camera = $"%camera"
 onready var head = $"head"
 onready var ray : RayCast = $"%RayCast"
+onready var gunshot_sound : AudioStreamPlayer = $"gunshot_sound"
 
 export var camera_acceleration := 40.0
 export var rotation_factor := 0.005
@@ -63,6 +64,8 @@ func shot():
 				collider.queue_free()
 				score += 1
 				$score.text = "Score: " + str(score)
+				gunshot_sound.pitch_scale = rand_range(0.90, 1.10) # Slight pitch variation
+				gunshot_sound.play()
 
 
 func on_back():
@@ -85,7 +88,8 @@ func _ready():
 	if data is GDScriptFunctionState:
 		yield(data, "completed")
 	
-	high_score = data["high_score"]
+	if data:
+		high_score = data["high_score"]
 
 
 func _physics_process(delta):
@@ -119,6 +123,7 @@ func _physics_process(delta):
 
 
 func _process(delta):
+	$fps.set_text("FPS: " + str(Engine.get_frames_per_second()))
 	if Engine.get_frames_per_second() > Engine.get_iterations_per_second():
 		camera.global_transform.origin = camera.global_transform.origin.linear_interpolate(
 			head.global_transform.origin, delta * camera_acceleration
