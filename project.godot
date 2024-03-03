@@ -25,7 +25,6 @@ Settings="*res://autoload/Settings.gd"
 [display]
 
 window/size/width=800
-window/stretch/mode="2d"
 window/stretch/aspect="expand"
 
 [gui]
