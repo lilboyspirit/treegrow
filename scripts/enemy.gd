@@ -1,7 +1,7 @@
 extends KinematicBody
 
 
-var speed = 10  # Movement speed
+var speed = 600  # Movement speed
 
 
 func _ready():
@@ -10,5 +10,5 @@ func _ready():
 
 func _physics_process(delta):
 	var direction = (Vector3.ZERO - global_transform.origin).normalized()
-	var velocity = direction * speed
+	var velocity = direction * speed * delta
 	velocity = move_and_slide(velocity)
