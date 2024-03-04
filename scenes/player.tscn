@@ -145,3 +145,5 @@ mouse_filter = 2
 margin_right = 40.0
 margin_bottom = 14.0
 text = "FPS: "
+
+[connection signal="finished" from="gunshot_sound" to="." method="_on_gunshot_sound_finished"]

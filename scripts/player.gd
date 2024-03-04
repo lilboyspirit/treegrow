@@ -147,3 +147,7 @@ func _on_settings_updated():
 
 func _on_size_changed():
 	viewport.size = OS.window_size * Settings.render_scale
+
+
+func _on_gunshot_sound_finished():
+	gunshot_sound.stop()
