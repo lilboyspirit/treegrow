@@ -28,4 +28,5 @@ func _process(delta: float):
 
 
 func end_game():
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://scenes/game_over.tscn")
