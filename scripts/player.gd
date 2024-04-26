@@ -69,7 +69,6 @@ func shot():
 
 
 func on_back():
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if !has_node("pause_menu"):
 		add_child(pause_menu.instance())
 

@@ -4,6 +4,11 @@ extends Node
 onready var settings_menu = preload("res://scenes/settings_menu.tscn")
 
 
+func _ready():
+	Engine.set_time_scale(0.0)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
 func _input(event: InputEvent):
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().set_input_as_handled()
@@ -11,6 +16,7 @@ func _input(event: InputEvent):
 
 
 func on_back():
+	Engine.set_time_scale(1.0)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	queue_free()
 
