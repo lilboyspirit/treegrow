@@ -27,5 +27,6 @@ func on_settings():
 
 
 func on_exit():
+	Engine.set_time_scale(1.0)
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://scenes/main_menu.tscn")
